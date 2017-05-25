@@ -19,13 +19,13 @@ import net.proteanit.sql.DbUtils;
 public class HRManager extends Employee {
 
     void fetchAttendanceDetailsFromTo(String StartingDate, String EndingDate,JTable attendanceTable) {
-      
+        //get attendance details from attendance table which is between given starting date and ending date
+        //both starting date and ending date included
         DBConnect DbcRecept = new DBConnect();
         DbcRecept.connectdb();
         String showAttendanceSQL = "select employeeID,count(Date) from Attendance where Date(date)>=? and Date(date)<=? group by employeeID;";
         PreparedStatement selctAttendancePrepStat;
-        /**/
-
+        
         try {
             selctAttendancePrepStat = DbcRecept.con.prepareStatement(showAttendanceSQL);
             selctAttendancePrepStat.setString(1, StartingDate);
