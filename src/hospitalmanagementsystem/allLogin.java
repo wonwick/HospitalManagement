@@ -111,7 +111,7 @@ public class allLogin extends javax.swing.JFrame {
             if (dbclogin.rs.next()) {
                 String absolutePass = dbclogin.rs.getString("Password");
                 int type = dbclogin.rs.getInt("Type");
-                String empID = dbclogin.rs.getString("id");
+                int empID = dbclogin.rs.getInt("id");
                 String promptedPass = (password.getText());
                 System.out.println(absolutePass + "\n" + promptedPass);
                 if (absolutePass.equals(promptedPass)) {
@@ -131,7 +131,7 @@ public class allLogin extends javax.swing.JFrame {
                         case 0:
                             DoctorsView dv=new DoctorsView();
                             dv.setVisible(true);
-                            dv.UserEmpID=empID;
+                            dv.d.setDoctor(empID);
                             setVisible(false);
                             break;
                         //add login to other type of users here as a new case

@@ -6,6 +6,7 @@
 package hospitalmanagementsystem;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -26,6 +28,7 @@ public class ReceptView extends javax.swing.JFrame {
     Patient thePatient = new Patient();
     Doctor OPDDoctor = new Doctor();
     boolean condMark = false;
+    Receptionist TheRecep = new Receptionist();
 
     /**
      * Creates new form ReceptView
@@ -92,19 +95,17 @@ public class ReceptView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        testTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        treatmentTable = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
-        jTextField11 = new javax.swing.JTextField();
+        toBePaidTextField = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        paidAmountTextField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        TotalTextField = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        payingAmount = new javax.swing.JTextField();
         pay = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         billPatientIDTextField = new javax.swing.JTextField();
@@ -265,7 +266,7 @@ public class ReceptView extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Charges", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -276,11 +277,11 @@ public class ReceptView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(testTable);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 180, 220));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 360, 220));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        treatmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -291,42 +292,39 @@ public class ReceptView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(treatmentTable);
 
-        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 270, 220));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable3);
-
-        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 280, 220));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 380, 220));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 75, 770, 280));
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Bill", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel10.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 160, -1));
+
+        toBePaidTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toBePaidTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel10.add(toBePaidTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 160, -1));
 
         jLabel17.setText("Paid Amount");
         jPanel10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 30));
-        jPanel10.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 160, -1));
+
+        paidAmountTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paidAmountTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel10.add(paidAmountTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 160, -1));
 
         jLabel18.setText("Amount to be paid");
         jPanel10.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 30));
-        jPanel10.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, -1));
+        jPanel10.add(TotalTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, -1));
 
         jLabel20.setText("Full amount");
         jPanel10.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 30));
-        jPanel10.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 280, -1));
+        jPanel10.add(payingAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 280, -1));
 
         pay.setText("Pay");
         pay.addActionListener(new java.awt.event.ActionListener() {
@@ -397,7 +395,7 @@ public class ReceptView extends javax.swing.JFrame {
                         .addComponent(empID, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CheckEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -637,38 +635,55 @@ public class ReceptView extends javax.swing.JFrame {
 
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-        // TODO add your handling code here:
+        int amount = -1;
+        try {
+            amount = Integer.parseInt(payingAmount.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Enter a valid amount");
+
+        }
+        if (amount > 0) {
+            thePatient.paidAmount = TheRecep.HandlePayment(thePatient, amount);
+            
+            int total = TheRecep.getPatientsTotalTestCharges(thePatient) + TheRecep.getPatientsTotalTreatmentCharges(thePatient);
+            paidAmountTextField.setText("" + thePatient.paidAmount);
+            toBePaidTextField.setText("" + (total - thePatient.paidAmount));
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter a valid amount");
+        }
     }//GEN-LAST:event_payActionPerformed
 
     private void billPatientCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billPatientCheckActionPerformed
-        DBConnect DbcRecept = new DBConnect();
-        DbcRecept.connectdb();
-        thePatient.patientID = -1;
+        String displayText = "";
+        int patientID = -1;
         try {
-            thePatient.patientID = Integer.parseInt(billPatientIDTextField.getText());
+            patientID = Integer.parseInt(billPatientIDTextField.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Patient ID cannot be left Blank");
         }
-        String checkPatient = "SELECT * FROM Person,Patient WHERE Patient.patientID=? and Patient.NIC=Person.NIC;";
-        PreparedStatement checkPatientPrepStat;
-        try {
-            checkPatientPrepStat = DbcRecept.con.prepareStatement(checkPatient);
-            checkPatientPrepStat.setInt(1,thePatient.patientID);
-            DbcRecept.rs = checkPatientPrepStat.executeQuery();
-            if (DbcRecept.rs.next()) {
-                PersonPatient = new Person(DbcRecept.rs);
-                String patientName = PersonPatient.firstName + " " + PersonPatient.lastName;
-                String admittedDate = DbcRecept.rs.getString("admittedDate");
-                billDisplayArea.setText("patientName : " + patientName + "\nAdmited Date:" + admittedDate);
-            } else {
-                System.out.println("no such Patient No");
-                billDisplayArea.setText("no such PatientID");
+        if (thePatient.patientID != -1) {
+            if (thePatient.setPatient(patientID)) {
+                displayText = thePatient.firstName + " " + thePatient.lastName + "\n"
+                        + "admitted Date: " + thePatient.admittedDate + "\n";
 
+                ResultSet Tests = TheRecep.getPatientsTestChargesDetails(thePatient);
+                testTable.setModel(DbUtils.resultSetToTableModel(Tests));
+
+                ResultSet Treatments = TheRecep.getPatientsTreatmentChargesDetails(thePatient);
+                treatmentTable.setModel(DbUtils.resultSetToTableModel(Treatments));
+
+                billDisplayArea.setText(displayText);
+            } else {
+                billDisplayArea.setText("no patient with given patientID");
             }
-        } catch (SQLException ex) {
-            clearPatientsPeronalDetails();
-            Logger.getLogger(ReceptView.class.getName()).log(Level.SEVERE, null, ex);
+
+        } else {
+            billDisplayArea.setText("not a valid PatientID");
         }
+        int total = TheRecep.getPatientsTotalTestCharges(thePatient) + TheRecep.getPatientsTotalTreatmentCharges(thePatient);
+        TotalTextField.setText("" + total);
+        paidAmountTextField.setText("" + thePatient.paidAmount);
+        toBePaidTextField.setText("" + (total - thePatient.paidAmount));
 
 
     }//GEN-LAST:event_billPatientCheckActionPerformed
@@ -785,6 +800,14 @@ public class ReceptView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MarkAttendanceActionPerformed
 
+    private void paidAmountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidAmountTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paidAmountTextFieldActionPerformed
+
+    private void toBePaidTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toBePaidTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toBePaidTextFieldActionPerformed
+
     void setPatientsPeronalDetails(Person p) {
         p_nicTextField.setText(p.NIC);
         p_lastNameTextField.setText(p.lastName);
@@ -885,6 +908,7 @@ public class ReceptView extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser G_DOB;
     private javax.swing.JButton MarkAttendance;
     private com.toedter.calendar.JDateChooser P_DOB;
+    private javax.swing.JTextField TotalTextField;
     private javax.swing.JButton admit;
     private javax.swing.JButton bill;
     private javax.swing.JTextArea billDisplayArea;
@@ -935,16 +959,8 @@ public class ReceptView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JButton logoutButton;
     private javax.swing.JTextArea p_addressTextField;
     private javax.swing.JTextField p_contactNoTextField;
@@ -953,11 +969,16 @@ public class ReceptView extends javax.swing.JFrame {
     private javax.swing.JTextField p_lastNameTextField;
     private javax.swing.JRadioButton p_male;
     private javax.swing.JTextField p_nicTextField;
+    private javax.swing.JTextField paidAmountTextField;
     private javax.swing.JButton patientCheckButton;
     private javax.swing.JButton pay;
+    private javax.swing.JTextField payingAmount;
     private javax.swing.JTabbedPane recepsTabedPane;
     private javax.swing.JTextField relation;
     private javax.swing.JLabel relationLable;
     private javax.swing.JPanel relationship;
+    private javax.swing.JTable testTable;
+    private javax.swing.JTextField toBePaidTextField;
+    private javax.swing.JTable treatmentTable;
     // End of variables declaration//GEN-END:variables
 }

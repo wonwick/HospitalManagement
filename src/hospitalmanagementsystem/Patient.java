@@ -46,7 +46,7 @@ public class Patient extends Person {
         }
     }
 
-    void setPatient(int patientID) {
+    boolean setPatient(int patientID) {
         try {
             DBConnect DbcRecept = new DBConnect();
             DbcRecept.connectdb();
@@ -55,12 +55,23 @@ public class Patient extends Person {
             getPatientDetailPrepStat = DbcRecept.con.prepareStatement(getPatientDetailSQL);
             getPatientDetailPrepStat.setInt(1, patientID);
             DbcRecept.rs = getPatientDetailPrepStat.executeQuery();
-            DbcRecept.rs.next();
-            DrID=DbcRecept.rs.getString("DrID");
-            super.setPerson(DbcRecept.rs.getString("Patient.NIC"));
+            if (DbcRecept.rs.next()) {
+                this.patientID = DbcRecept.rs.getInt("patientID");
+                this.admittedDate = DbcRecept.rs.getString("admittedDate");
+                this.dischargedDate = DbcRecept.rs.getString("dischargedDate");
+                this.paidAmount = DbcRecept.rs.getInt("paidAmount");
+                this.NIC = DbcRecept.rs.getString("NIC");
+                this.guardianNIC = DbcRecept.rs.getString("guardianNIC");
+                this.guardRel = DbcRecept.rs.getString("guardRel");
+                this.DrID = DbcRecept.rs.getString("DrID");
+                this.wardID = DbcRecept.rs.getString("wardID");
+                super.setPerson(DbcRecept.rs.getString("Patient.NIC"));
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     String getDoctorsName() {

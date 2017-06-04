@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +80,14 @@ public class HRView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         empIDTextField = new javax.swing.JTextField();
         EmpCheckButton = new javax.swing.JButton();
+        directEmpPanel = new javax.swing.JPanel();
+        D_empIDTextField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        lableWardID = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        D_empDescTextArea = new javax.swing.JTextArea();
+        D_empWardComboBox = new javax.swing.JComboBox<>();
         indirectEmpPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -91,14 +98,6 @@ public class HRView extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        directEmpPanel = new javax.swing.JPanel();
-        D_empIDTextField = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        lableWardID = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        D_empDescTextArea = new javax.swing.JTextArea();
-        D_empWardComboBox = new javax.swing.JComboBox<>();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
@@ -222,6 +221,35 @@ public class HRView extends javax.swing.JFrame {
         });
         jPanel5.add(EmpCheckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 90, 30));
 
+        directEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        directEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        directEmpPanel.add(D_empIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 190, -1));
+
+        jLabel11.setText("ID");
+        directEmpPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
+
+        lableWardID.setText("WardID");
+        directEmpPanel.add(lableWardID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
+
+        jLabel12.setText("Description");
+        directEmpPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
+
+        D_empDescTextArea.setColumns(20);
+        D_empDescTextArea.setRows(5);
+        jScrollPane5.setViewportView(D_empDescTextArea);
+
+        directEmpPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 490, 160));
+
+        D_empWardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        D_empWardComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                D_empWardComboBoxActionPerformed(evt);
+            }
+        });
+        directEmpPanel.add(D_empWardComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 190, -1));
+
+        jPanel5.add(directEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
+
         indirectEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         indirectEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -247,30 +275,6 @@ public class HRView extends javax.swing.JFrame {
         indirectEmpPanel.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 520, 150));
 
         jPanel5.add(indirectEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
-
-        directEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
-        directEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        directEmpPanel.add(D_empIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 190, -1));
-
-        jLabel11.setText("ID");
-        directEmpPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
-
-        lableWardID.setText("WardID");
-        directEmpPanel.add(lableWardID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
-
-        jLabel12.setText("Description");
-        directEmpPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 30));
-
-        D_empDescTextArea.setColumns(20);
-        D_empDescTextArea.setRows(5);
-        jScrollPane5.setViewportView(D_empDescTextArea);
-
-        directEmpPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 490, 160));
-
-        D_empWardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        directEmpPanel.add(D_empWardComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 190, -1));
-
-        jPanel5.add(directEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
 
         updateButton.setText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1065,6 +1069,10 @@ public class HRView extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_typeComboBoxPropertyChange
+
+    private void D_empWardComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_empWardComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_D_empWardComboBoxActionPerformed
 
     void setEmpPeronalDetails(Person p) {
         p_nicTextField.setText(p.NIC);

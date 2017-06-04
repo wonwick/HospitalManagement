@@ -27,7 +27,6 @@ public class DoctorsView extends javax.swing.JFrame {
     Doctor d = new Doctor();
     Patient p = new Patient();
     //String UserEmpID=d.drID;
-    String UserEmpID = "D1001";
     int drPatientID;
     int patientID = 0;
 
@@ -120,6 +119,7 @@ public class DoctorsView extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         NotAssignedDescTextArea = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
+        docNameLable = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -546,6 +546,8 @@ public class DoctorsView extends javax.swing.JFrame {
 
         DoctorViewTabs.addTab("Refer a Doctor", jPanel7);
 
+        docNameLable.setText("doctors name");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -554,11 +556,17 @@ public class DoctorsView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(DoctorViewTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 1038, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(docNameLable, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(31, 31, 31)
+                .addComponent(docNameLable)
+                .addGap(18, 18, 18)
                 .addComponent(DoctorViewTabs)
                 .addContainerGap())
         );
@@ -588,7 +596,7 @@ public class DoctorsView extends javax.swing.JFrame {
                 PreparedStatement checkPrepStat;
                 CheckSQL = "SELECT drPatientID, drPatient.patientID, firstName, lastName FROM drPatient,Person,Patient WHERE (Patient.NIC=Person.NIC AND drPatient.DrID=? AND drPatient.patientID=? AND drPatient.patientID =Patient.patientID AND (dischargedDate IS NULL))";
                 checkPrepStat = DbcRecept.con.prepareStatement(CheckSQL);
-                checkPrepStat.setString(1, UserEmpID);
+                checkPrepStat.setString(1, d.drID);
                 checkPrepStat.setInt(2, patientID);
                 DbcRecept.rs = checkPrepStat.executeQuery();
                 if (DbcRecept.rs.next()) {
@@ -624,6 +632,7 @@ public class DoctorsView extends javax.swing.JFrame {
         OrderButton.setVisible(false);
         ReferButton.setVisible(false);
         patientID = -1;
+        docNameLable.setText(d.firstName+" "+d.lastName);
 
         try {
             patientID = Integer.parseInt(myPatientTextField.getText());
@@ -638,7 +647,7 @@ public class DoctorsView extends javax.swing.JFrame {
             try {
                 CheckSQL = "SELECT drPatientID, drPatient.patientID, firstName, lastName FROM drPatient,Person,Patient WHERE (Patient.NIC=Person.NIC AND drPatient.DrID=? AND drPatient.patientID =Patient.patientID )";
                 checkPrepStat = DbcRecept.con.prepareStatement(CheckSQL);
-                checkPrepStat.setString(1, UserEmpID);
+                checkPrepStat.setString(1, d.drID);
                 DbcRecept.rs = checkPrepStat.executeQuery();
                 assignedPatientsTable.setModel(DbUtils.resultSetToTableModel(DbcRecept.rs));
             } catch (SQLException ex) {
@@ -649,7 +658,7 @@ public class DoctorsView extends javax.swing.JFrame {
                 p.setPatient(patientID);
                 CheckSQL = "SELECT drPatientID, drPatient.patientID, firstName, lastName FROM drPatient,Person,Patient WHERE (Patient.NIC=Person.NIC AND drPatient.DrID=? AND drPatient.patientID=? AND drPatient.patientID =Patient.patientID)";
                 checkPrepStat = DbcRecept.con.prepareStatement(CheckSQL);
-                checkPrepStat.setString(1, UserEmpID);
+                checkPrepStat.setString(1, d.drID);
                 checkPrepStat.setInt(2, patientID);
                 DbcRecept.rs = checkPrepStat.executeQuery();
                 assignedPatientsTable.setModel(DbUtils.resultSetToTableModel(DbcRecept.rs));
@@ -750,10 +759,10 @@ public class DoctorsView extends javax.swing.JFrame {
         patientID = Integer.parseInt("" + assignedPatientsTable.getValueAt(row, 1));
         myPatientTextField.setText("" + patientID);
         p.setPatient(patientID);
-        System.out.println("patients drId" + UserEmpID);
+        System.out.println("patients drId" + d.drID);
         System.out.println("doctors drId" + p.DrID);
 
-        if (UserEmpID.equals(p.DrID)) {
+        if (d.drID.equals(p.DrID)) {
             ChangeDrInchargeButton.setVisible(true);
             DischargeButton.setVisible(true);
         } else {
@@ -823,7 +832,7 @@ public class DoctorsView extends javax.swing.JFrame {
                 PreparedStatement checkPrepStat;
                 CheckSQL = "SELECT drPatientID, drPatient.patientID, firstName, lastName FROM drPatient,Person,Patient WHERE (Patient.NIC=Person.NIC AND drPatient.DrID=? AND drPatient.patientID=? AND drPatient.patientID =Patient.patientID)";
                 checkPrepStat = DbcRecept.con.prepareStatement(CheckSQL);
-                checkPrepStat.setString(1, UserEmpID);
+                checkPrepStat.setString(1, d.drID);
                 checkPrepStat.setInt(2, patientID);
                 DbcRecept.rs = checkPrepStat.executeQuery();
                 if (DbcRecept.rs.next()) {
@@ -872,7 +881,7 @@ public class DoctorsView extends javax.swing.JFrame {
 
     private void notAssignedDoctorsTablsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notAssignedDoctorsTablsMouseClicked
         int row = notAssignedDoctorsTabls.getSelectedRow();
-        UserEmpID = "" + notAssignedDoctorsTabls.getValueAt(row, 0);
+        d.drID = "" + notAssignedDoctorsTabls.getValueAt(row, 0);
         NotAssignedDescTextArea.setText("" + notAssignedDoctorsTabls.getValueAt(row, 3));
         AssignButton.setVisible(true);
     }//GEN-LAST:event_notAssignedDoctorsTablsMouseClicked
@@ -882,12 +891,13 @@ public class DoctorsView extends javax.swing.JFrame {
             DBConnect DbcRecept = new DBConnect();
             DbcRecept.connectdb();
             int row = notAssignedDoctorsTabls.getSelectedRow();
-            UserEmpID = "" + notAssignedDoctorsTabls.getValueAt(row, 0);
+            Doctor ad=new Doctor();
+            ad.drID = "" + notAssignedDoctorsTabls.getValueAt(row, 0);
 
             String insertDrPatientSql = "INSERT INTO drPatient (DrID,patientID) VALUES (?,?) ;";
             PreparedStatement insertDrPatientPrepStat;
             insertDrPatientPrepStat = DbcRecept.con.prepareStatement(insertDrPatientSql);
-            insertDrPatientPrepStat.setString(1, UserEmpID);
+            insertDrPatientPrepStat.setString(1, ad.drID);
             insertDrPatientPrepStat.setInt(2, patientID);
             insertDrPatientPrepStat.executeUpdate();
             String getAssignedDoctorsSQL = "SELECT Doctor.drID ,firstName, lastName, Doctor.Description FROM drPatient,Doctor,Person,Employee WHERE (drPatient.patientID=? AND drPatient.DrID=Doctor.drID AND Doctor.employeeID=Employee.employeeID AND Employee.NIC=Person.NIC);";
@@ -1032,6 +1042,7 @@ public class DoctorsView extends javax.swing.JFrame {
     private javax.swing.JTextArea TreatmentTextArea;
     private javax.swing.JPanel UnAssignedPannel;
     private javax.swing.JTable assignedPatientsTable;
+    private javax.swing.JLabel docNameLable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
