@@ -27,10 +27,12 @@ public class HRView extends javax.swing.JFrame {
     Person empPerson = new Person();
     Doctor d = new Doctor();
     Nurse n = new Nurse();
+    OtherEmployee Oth = new OtherEmployee();
     Employee emp = new Employee();
     int condition = 0;
     HRManager currentHRManager = new HRManager();
-    DateHandler HRDateHandler=new DateHandler();
+    DateHandler HRDateHandler = new DateHandler();
+
     /**
      * Creates new form HRView
      */
@@ -40,7 +42,6 @@ public class HRView extends javax.swing.JFrame {
         indirectEmpPanel.setVisible(false);
         addButton.setVisible(false);
         updateButton.setVisible(false);
-        deleteButton.setVisible(false);
 
     }
 
@@ -54,6 +55,7 @@ public class HRView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel9 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -80,6 +82,16 @@ public class HRView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         empIDTextField = new javax.swing.JTextField();
         EmpCheckButton = new javax.swing.JButton();
+        indirectEmpPanel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        otherIDTextField = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        postTextField = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        SectionTextField = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        descTextArea = new javax.swing.JTextArea();
         directEmpPanel = new javax.swing.JPanel();
         D_empIDTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -88,18 +100,7 @@ public class HRView extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         D_empDescTextArea = new javax.swing.JTextArea();
         D_empWardComboBox = new javax.swing.JComboBox<>();
-        indirectEmpPanel = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         displayTextArea = new javax.swing.JTextArea();
@@ -118,7 +119,6 @@ public class HRView extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         detailsTextArea = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        logoutButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -167,6 +167,7 @@ public class HRView extends javax.swing.JFrame {
         jLabel9.setText("Gender");
         jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 40));
 
+        buttonGroup1.add(p_female);
         p_female.setText("Female");
         jPanel6.add(p_female, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
@@ -179,13 +180,14 @@ public class HRView extends javax.swing.JFrame {
         jPanel6.add(personCheckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 90, 30));
         jPanel6.add(P_DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 250, 30));
 
+        buttonGroup1.add(p_male);
         p_male.setText("Male");
         jPanel6.add(p_male, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
 
         jLabel21.setText("DOB");
         jPanel6.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 30));
 
-        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doctor", "Nurse", "Maintanance", "Other" }));
+        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Doctor", "Nurse", "Other" }));
         typeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeComboBoxActionPerformed(evt);
@@ -221,6 +223,32 @@ public class HRView extends javax.swing.JFrame {
         });
         jPanel5.add(EmpCheckButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 90, 30));
 
+        indirectEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        indirectEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setText("ID");
+        indirectEmpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
+        indirectEmpPanel.add(otherIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 300, -1));
+
+        jLabel15.setText("Description");
+        indirectEmpPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        indirectEmpPanel.add(postTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 300, -1));
+
+        jLabel16.setText("Section");
+        indirectEmpPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
+
+        jLabel17.setText("post.");
+        indirectEmpPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
+        indirectEmpPanel.add(SectionTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 300, -1));
+
+        descTextArea.setColumns(20);
+        descTextArea.setRows(5);
+        jScrollPane6.setViewportView(descTextArea);
+
+        indirectEmpPanel.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 520, 150));
+
+        jPanel5.add(indirectEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
+
         directEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         directEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         directEmpPanel.add(D_empIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 190, -1));
@@ -240,41 +268,15 @@ public class HRView extends javax.swing.JFrame {
 
         directEmpPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 490, 160));
 
-        D_empWardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        D_empWardComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pediatrics Department ", "Out Patient Department", "Maternity Department", "Diagnostic Medicine ", "Gynecologist Department", "Oncology Department   " }));
         D_empWardComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 D_empWardComboBoxActionPerformed(evt);
             }
         });
-        directEmpPanel.add(D_empWardComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 190, -1));
+        directEmpPanel.add(D_empWardComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 290, -1));
 
         jPanel5.add(directEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
-
-        indirectEmpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employee Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
-        indirectEmpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel14.setText("ID");
-        indirectEmpPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
-        indirectEmpPanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 300, -1));
-
-        jLabel15.setText("Description");
-        indirectEmpPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
-        indirectEmpPanel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 300, -1));
-
-        jLabel16.setText("Section");
-        indirectEmpPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
-
-        jLabel17.setText("Head");
-        indirectEmpPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
-        indirectEmpPanel.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 300, -1));
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane6.setViewportView(jTextArea2);
-
-        indirectEmpPanel.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 520, 150));
-
-        jPanel5.add(indirectEmpPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 640, 280));
 
         updateButton.setText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -282,15 +284,7 @@ public class HRView extends javax.swing.JFrame {
                 updateButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 120, 50));
-
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-        jPanel5.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 340, 120, 50));
+        jPanel5.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 340, 120, 50));
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +292,7 @@ public class HRView extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
-        jPanel5.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 120, 50));
+        jPanel5.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 120, 50));
 
         displayTextArea.setColumns(20);
         displayTextArea.setRows(5);
@@ -412,8 +406,6 @@ public class HRView extends javax.swing.JFrame {
 
         jLabel3.setText(" - HR Management -");
 
-        logoutButton.setText("log Out");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -424,18 +416,15 @@ public class HRView extends javax.swing.JFrame {
                     .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logoutButton)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutButton)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -448,9 +437,9 @@ public class HRView extends javax.swing.JFrame {
         Date end = endDate.getDate();
         if (start != null && end != null) {
             //changing date format to compatible with MySQL
-            StartingDate=HRDateHandler.DateToString(start);
-            EndingDate=HRDateHandler.DateToString(end);
-                    
+            StartingDate = HRDateHandler.DateToString(start);
+            EndingDate = HRDateHandler.DateToString(end);
+
         } else {
             //if either one date is null set dates to get attendance of current month 
             EndingDate = HRDateHandler.getTodayDate();
@@ -499,7 +488,6 @@ public class HRView extends javax.swing.JFrame {
         indirectEmpPanel.setVisible(false);
         addButton.setVisible(false);
         updateButton.setVisible(false);
-        deleteButton.setVisible(false);
         if (nic != null) {
             String checkSql = "SELECT * FROM Person WHERE NIC=?;";
             PreparedStatement checkPrepStat;
@@ -527,34 +515,36 @@ public class HRView extends javax.swing.JFrame {
                         System.out.println("empId is " + empId);
                         empIDTextField.setText("" + empId);
                         updateButton.setVisible(true);
-                        deleteButton.setVisible(true);
                         switch (type) {
                             case 0:
                                 //when employee is a doctor
                                 typeComboBox.setSelectedIndex(0);
                                 directEmpPanel.setVisible(true);
                                 indirectEmpPanel.setVisible(false);
-                                Doctor d = new Doctor();
+                                d = new Doctor();
                                 d.setDoctor(empId);
                                 setDirectEmpDetails(d);
                                 break;
 
                             case 1:
                                 //when Employee is a Nurse
-                                typeComboBox.setSelectedIndex(0);
+                                typeComboBox.setSelectedIndex(1);
                                 directEmpPanel.setVisible(true);
                                 indirectEmpPanel.setVisible(false);
-                                Nurse n = new Nurse();
+                                n = new Nurse();
                                 n.setNurse(empId);
                                 setDirectEmpDetails(n);
                                 break;
 
                             case 2:
-                                //when employee is a maintananceStaffMember
-                                break;
-
-                            case 3:
                                 //when employee is a other
+                                typeComboBox.setSelectedIndex(2);
+                                directEmpPanel.setVisible(false);
+                                indirectEmpPanel.setVisible(true);
+                                Oth = new OtherEmployee();
+                                Oth.setOtherEmployee(empId);
+                                setInDirectEmpDetails(Oth);
+                                System.out.println("seting otherEmployeeDeatils");
                                 break;
                         }
 
@@ -566,7 +556,6 @@ public class HRView extends javax.swing.JFrame {
 
                         addButton.setVisible(true);
                         updateButton.setVisible(false);
-                        deleteButton.setVisible(false);
                         viewEmpdetailsAcordingly();
 
                     }
@@ -578,7 +567,6 @@ public class HRView extends javax.swing.JFrame {
                     displayTextArea.setText("NO person found with given NIC !!");
                     addButton.setVisible(true);
                     updateButton.setVisible(false);
-                    deleteButton.setVisible(false);
                     viewEmpdetailsAcordingly();
 
                 }
@@ -790,23 +778,29 @@ public class HRView extends javax.swing.JFrame {
 
                     break;
 
-                //employeee is from Maintanance
                 case 2:
-                    if (n.nurseID.isEmpty() || n.description.isEmpty()) {
+                    Oth.employeeID = Integer.parseInt(empIDTextField.getText());
+                    Oth.OtherID = empIDTextField.getText();
+                    Oth.post = postTextField.getText();
+                    Oth.description = descTextArea.getText();
+                    Oth.section = SectionTextField.getText();
+                    if (Oth.OtherID.isEmpty() || Oth.description.isEmpty() || Oth.post.isEmpty()||Oth.section.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Some fields are left blank, Fill all fields correctly.");
 
                     } else {
-
+                        try {
+                        String insertSql = "INSERT INTO OtherEmployee (OtherID, description, section, post, employeeID) VALUES (?,?,?,?,?) ;";
+                        PreparedStatement insertPrepStat;
+                        insertPrepStat = DbcRecept.con.prepareStatement(insertSql);
+                        insertPrepStat.setString(1, Oth.OtherID);
+                        insertPrepStat.setString(2, Oth.description);
+                        insertPrepStat.setString(3, Oth.section);
+                        insertPrepStat.setString(4, Oth.post);
+                        insertPrepStat.setInt(5, Oth.employeeID);
+                        insertPrepStat.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HRView.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                    break;
-
-                //employeee is from other
-                case 3:
-                    if (n.nurseID.isEmpty() || n.description.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Some fields are left blank, Fill all fields correctly.");
-
-                    } else {
 
                     }
 
@@ -822,12 +816,10 @@ public class HRView extends javax.swing.JFrame {
         DBConnect DbcRecept = new DBConnect();
         DbcRecept.connectdb();
         int type = typeComboBox.getSelectedIndex();
-
         switch (type) {
             //employeee is a doctor
             case 0:
 
-                d.employeeID = emp.employeeID;
                 d.drID = D_empIDTextField.getText();
                 d.wardID = "" + D_empWardComboBox.getSelectedIndex();
                 d.description = D_empDescTextArea.getText();
@@ -869,7 +861,7 @@ public class HRView extends javax.swing.JFrame {
 
             //employeee is a Nurse
             case 1:
-                n.employeeID = emp.employeeID;
+                System.out.println("case1 nurse emp id" + n.employeeID);
                 n.nurseID = D_empIDTextField.getText();
                 n.wardID = "" + D_empWardComboBox.getSelectedIndex();
                 n.description = D_empDescTextArea.getText();
@@ -880,12 +872,16 @@ public class HRView extends javax.swing.JFrame {
                 }//employee in datatbse
                 else if (condition == 1) {
                     try {
+                        System.out.println("Updating nurse empolyee details");
+
                         String insertSql = "UPDATE Nurse set nurseID=?, description=?, wardID=? WHERE EmployeeID=?;";
                         PreparedStatement insertPrepStat;
                         insertPrepStat = DbcRecept.con.prepareStatement(insertSql);
                         insertPrepStat.setString(1, n.nurseID);
                         insertPrepStat.setString(2, n.description);
                         insertPrepStat.setString(3, n.wardID);
+                        System.out.println(" in handlEmployee details,  nurse wardID= " + n.wardID);
+                        System.out.println("nurse.empID" + n.employeeID);
                         insertPrepStat.setInt(4, n.employeeID);
                         insertPrepStat.executeUpdate();
                     } catch (SQLException ex) {
@@ -894,6 +890,7 @@ public class HRView extends javax.swing.JFrame {
                 } //employee not in database
                 else if (condition == 2 || condition == 3) {
                     try {
+                        System.out.println("inserting nurse empolyee details");
                         String insertSql = "INSERT INTO Nurse (nurseID, description, EmployeeID, wardID) VALUES (?,?,?,?) ;";
                         PreparedStatement insertPrepStat;
                         insertPrepStat = DbcRecept.con.prepareStatement(insertSql);
@@ -909,28 +906,51 @@ public class HRView extends javax.swing.JFrame {
 
                 break;
 
-            //employeee is from Maintanance 
+            //employeee is from other 
             case 2:
-                //employee in datatbse
+                Oth.OtherID = empIDTextField.getText();
+                Oth.post = postTextField.getText();
+                Oth.description = descTextArea.getText();
+                Oth.section = SectionTextField.getText();
 
-                if (condition == 1) {
-
-                } //employee not in database
-                else if (condition == 2 || condition == 3) {
+                //fields are not properly filled
+                if (Oth.post.isEmpty() || Oth.OtherID.isEmpty() || Oth.description.isEmpty() || Oth.section.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Some fields are left blank, Fill all fields correctly.");
 
                 }
 
-                break;
-
-            //employeee is from other
-            case 3:
                 //employee in datatbse
-
                 if (condition == 1) {
+                    try {
+                        String insertSql = "UPDATE OtherEmployee set OtherID=?, description=?, section=?, post=?, employeeID=? WHERE EmployeeID=?;";
+                        PreparedStatement insertPrepStat;
+                        insertPrepStat = DbcRecept.con.prepareStatement(insertSql);
+                        insertPrepStat.setString(1, Oth.OtherID);
+                        insertPrepStat.setString(2, Oth.description);
+                        insertPrepStat.setString(3, Oth.section);
+                        insertPrepStat.setString(4, Oth.post);
+                        insertPrepStat.setInt(5, Oth.employeeID);
+                        insertPrepStat.setInt(6, Oth.employeeID);
+                        insertPrepStat.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HRView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } //employee not in database
                 else if (condition == 2 || condition == 3) {
-
+                    try {
+                        String insertSql = "INSERT INTO OtherEmployee (OtherID, description, section, post, employeeID) VALUES (?,?,?,?,?) ;";
+                        PreparedStatement insertPrepStat;
+                        insertPrepStat = DbcRecept.con.prepareStatement(insertSql);
+                        insertPrepStat.setString(1, Oth.OtherID);
+                        insertPrepStat.setString(2, Oth.description);
+                        insertPrepStat.setString(3, Oth.section);
+                        insertPrepStat.setString(4, Oth.post);
+                        insertPrepStat.setInt(5, Oth.employeeID);
+                        insertPrepStat.executeUpdate();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HRView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
                 break;
@@ -958,28 +978,33 @@ public class HRView extends javax.swing.JFrame {
                 directEmpPanel.setVisible(false);
                 break;
 
-            case 3:
-                indirectEmpPanel.setVisible(true);
-                directEmpPanel.setVisible(false);
-                break;
-
         }
     }
 
-    void setDirectEmpDetails(Doctor d
-    ) {
+    void setDirectEmpDetails(Doctor d) {
         D_empIDTextField.setText(d.drID);
         D_empDescTextArea.setText(d.description);
+        System.out.println("d.wardID is " + d.wardID);
         D_empWardComboBox.setSelectedIndex(Integer.parseInt(d.wardID));
 
     }
 
-    void setDirectEmpDetails(Nurse n
-    ) {
+    void setDirectEmpDetails(Nurse n) {
         D_empIDTextField.setText(n.nurseID);
         D_empDescTextArea.setText(n.description);
+        System.out.println("n.wardID is " + n.wardID);
+
         D_empWardComboBox.setSelectedIndex(Integer.parseInt(n.wardID));
     }
+
+    void setInDirectEmpDetails(OtherEmployee oth) {
+        otherIDTextField.setText(oth.OtherID);
+        descTextArea.setText(oth.description);
+        postTextField.setText(oth.post);
+        SectionTextField.setText(oth.section);
+
+    }
+
 
     private void EmpCheckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpCheckButtonActionPerformed
         DBConnect DbcRecept = new DBConnect();
@@ -1009,7 +1034,6 @@ public class HRView extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         addButton.setVisible(false);
         updateButton.setVisible(false);
-        deleteButton.setVisible(false);
         if (condition == 1) {
             handlePersonalDetailsUpdate();
             handleEmployeeDetailsUpdate();
@@ -1017,10 +1041,6 @@ public class HRView extends javax.swing.JFrame {
             System.out.println("update cannot be pressed when condition " + condition);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void typeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboBoxActionPerformed
         int type = typeComboBox.getSelectedIndex();
@@ -1052,7 +1072,6 @@ public class HRView extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         addButton.setVisible(false);
         updateButton.setVisible(false);
-        deleteButton.setVisible(false);
         if (condition == 2) {
             handlePersonalDetailsUpdate();
             handleEmployeeDetailsInsert();
@@ -1136,9 +1155,11 @@ public class HRView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> D_empWardComboBox;
     private javax.swing.JButton EmpCheckButton;
     private com.toedter.calendar.JDateChooser P_DOB;
+    private javax.swing.JTextField SectionTextField;
     private javax.swing.JButton addButton;
     private javax.swing.JTable attendanceTable;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextArea descTextArea;
     private javax.swing.JTable detailsTable;
     private javax.swing.JTextArea detailsTextArea;
     private javax.swing.JPanel directEmpPanel;
@@ -1179,12 +1200,8 @@ public class HRView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lableWardID;
-    private javax.swing.JButton logoutButton;
+    private javax.swing.JTextField otherIDTextField;
     private javax.swing.JTextArea p_addressTextField;
     private javax.swing.JTextField p_contactNoTextField;
     private javax.swing.JRadioButton p_female;
@@ -1193,6 +1210,7 @@ public class HRView extends javax.swing.JFrame {
     private javax.swing.JRadioButton p_male;
     private javax.swing.JTextField p_nicTextField;
     private javax.swing.JButton personCheckButton;
+    private javax.swing.JTextField postTextField;
     private javax.swing.JButton showButton;
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JComboBox<String> typeComboBox;

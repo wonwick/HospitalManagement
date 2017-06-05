@@ -134,6 +134,12 @@ public class allLogin extends javax.swing.JFrame {
                             dv.d.setDoctor(empID);
                             setVisible(false);
                             break;
+                            
+                        case 2:
+                            LabView lv=new LabView();
+                            lv.setVisible(true);
+                            setVisible(false);
+                            break;
                         //add login to other type of users here as a new case
                         default:
                             System.out.print("Undefined user type");

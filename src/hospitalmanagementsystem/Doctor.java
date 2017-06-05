@@ -63,4 +63,30 @@ public class Doctor extends Employee {
         }
     }
 
+    void setDoctor(String drID) {
+        try {
+            this.drID = drID;
+            DBConnect DbcRecept = new DBConnect();
+            DbcRecept.connectdb();
+            String getEmployeeSQL = "SELECT * FROM Doctor WHERE drID=?;";
+            PreparedStatement getEmployeePrepStat;
+            getEmployeePrepStat = DbcRecept.con.prepareStatement(getEmployeeSQL);
+            getEmployeePrepStat.setString(1, this.drID);
+            DbcRecept.rs = getEmployeePrepStat.executeQuery();
+            if (DbcRecept.rs.next()) {
+                this.drID = DbcRecept.rs.getString("drID");
+                this.description = DbcRecept.rs.getString("description");
+                this.wardID = DbcRecept.rs.getString("wardID");
+                this.employeeID = DbcRecept.rs.getInt("employeeID");
+                super.setEmployee(this.employeeID);
+                super.setPerson(NIC);
+            } else {
+                System.out.println("problem here at setDoctor by drID");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Doctor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

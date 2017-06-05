@@ -120,7 +120,6 @@ public class ReceptView extends javax.swing.JFrame {
         MarkAttendance = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         displayDetails = new javax.swing.JTextArea();
-        logoutButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -419,8 +418,6 @@ public class ReceptView extends javax.swing.JFrame {
 
         recepsTabedPane.addTab("Staff Attendance", jPanel5);
 
-        logoutButton.setText("log Out");
-
         jLabel1.setText(" - Reception -");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -430,23 +427,17 @@ public class ReceptView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(recepsTabedPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(626, 626, 626)
-                        .addComponent(logoutButton))
-                    .addComponent(recepsTabedPane))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1))
-                    .addComponent(logoutButton))
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(recepsTabedPane)
                 .addContainerGap())
@@ -961,7 +952,6 @@ public class ReceptView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JButton logoutButton;
     private javax.swing.JTextArea p_addressTextField;
     private javax.swing.JTextField p_contactNoTextField;
     private javax.swing.JRadioButton p_female;

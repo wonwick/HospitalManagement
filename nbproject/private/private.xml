@@ -12,16 +12,22 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/HRView.java</file>
-            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Employee.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/LabView.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/DateHandler.java</file>
-            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/DoctorsView.java</file>
-            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/HospitalManagementSystem.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/ReceptView.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/allLogin.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Doctor.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/OtherEmployee.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/HRManager.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Patient.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Receptionist.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/HRView.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Employee.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/DBConnect.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/DoctorsView.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/HospitalManagementSystem.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Nurse.java</file>
+            <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/labEmployee.java</file>
             <file>file:/home/oshan/NetBeansProjects/HospitalManagementSystem/src/hospitalmanagementsystem/Person.java</file>
         </group>
     </open-files>

@@ -75,22 +75,10 @@ public class Patient extends Person {
     }
 
     String getDoctorsName() {
-        DBConnect DbcRecept = new DBConnect();
-        DbcRecept.connectdb();
-        String drName = null;
-        try {
-            String getDrNameSQL = ("select Firstname,lastName from Person,Employee,Doctor where Doctor.drID=? and Employee.employeeID=Doctor.employeeID and Employee.NIC=Person.NIC;");
-            PreparedStatement getDrNamePrepStat;
-            getDrNamePrepStat = DbcRecept.con.prepareStatement(getDrNameSQL);
-            getDrNamePrepStat.setString(1, DrID);
-            DbcRecept.rs = getDrNamePrepStat.executeQuery();
-            DbcRecept.rs.next();
-            drName = DbcRecept.rs.getString(1) + " " + DbcRecept.rs.getString(2);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        return drName;
+        Doctor patientIncharge=new Doctor();
+        patientIncharge.setDoctor(this.DrID);
+        return patientIncharge.firstName+" "+patientIncharge.lastName;
+ 
+    
     }
 }
